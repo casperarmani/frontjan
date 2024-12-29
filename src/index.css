@@ -1,0 +1,417 @@
+@keyframes fadeInMessage {
+  0% {
+    opacity: 0;
+    transform: translateY(4px) translateZ(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) translateZ(0);
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *:not(.markmap-wrapper *, .company-slider *) {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
+  
+  *:not(.markmap *, .markmap-wrapper *, .company-slider *) {
+    max-width: 100%;
+  }
+  
+  pre:not(.markmap *), code:not(.markmap *) {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.will-change-scroll {
+  will-change: scroll-position;
+  -webkit-overflow-scrolling: touch;
+}
+
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.prose-invert {
+  @apply prose-headings:text-white/90 
+    prose-h1:text-lg
+    prose-h2:text-base
+    prose-h3:text-sm
+    prose-p:text-white/90 
+    prose-strong:text-white/90 
+    prose-em:text-white/90
+    prose-code:text-white/90
+    prose-ul:text-white/90
+    prose-ol:text-white/90
+    prose-li:text-white/90
+    prose-pre:bg-black/30
+    prose-pre:text-white/90;
+}
+
+.prose code {
+  @apply bg-black/30 px-1 py-0.5 rounded;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+/* Plan Selection Modal Styles */
+.plan-selection-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.plan-selection-content {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    max-width: 900px;
+    width: 90%;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.plan-selection-content h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+    font-size: 2rem;
+}
+
+.plans-container {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.plan-card {
+    flex: 1;
+    max-width: 350px;
+    padding: 2rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    border-color: #1960c1;
+}
+
+.plan-card h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.plan-card .price {
+    font-size: 2rem;
+    color: #1960c1; /*Darker Blue*/
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+}
+
+.plan-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem;
+    text-align: left;
+}
+
+.plan-card ul li {
+    padding: 0.5rem 0;
+    color: #555;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.plan-card ul li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+}
+
+.select-plan-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+.select-plan-btn:hover {
+    background: #2980b9;
+}
+
+.close-modal {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0.5rem 1rem;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    background: #f5f5f5;
+    color: #333;
+}
+ 
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 0%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 0%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 0%;
+ 
+    --primary: 0 0% 0%;
+    --primary-foreground: 0 0% 100%;
+ 
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 0%;
+ 
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+ 
+    --accent: 0 0% 96%;
+    --accent-foreground: 0 0% 0%;
+ 
+    --destructive: 0 0% 40%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 0 0% 0%;
+ 
+    --radius: 0.5rem;
+  }
+ 
+  .dark {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+ 
+    --card: 0 0% 0%;
+    --card-foreground: 0 0% 100%;
+ 
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 100%;
+ 
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+ 
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 100%;
+ 
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+ 
+    --accent: 0 0% 15%;
+    --accent-foreground: 0 0% 100%;
+ 
+    --destructive: 0 0% 60%;
+    --destructive-foreground: 0 0% 100%;
+ 
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 0 0% 100%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 1rem));
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+/* Plan Selection Modal Styles */
+.plan-selection-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.plan-selection-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  max-width: 800px;
+  width: 90%;
+}
+
+.plans-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.plan-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.plan-card .price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1960c1; /*Darker Blue*/
+  margin-bottom: 1.5rem;
+}
+
+.select-plan-btn {
+  width: 100%;
+  padding: 0.5rem;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.close-modal {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #e5e7eb;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+@keyframes border-rainbow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 400% 50%;
+  }
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-radius: 24px;
+  background-clip: padding-box;
+}
+
+.chat-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 2px; /* This creates the border width */
+  pointer-events: none;
+  background: linear-gradient(
+    45deg,
+    #B00000 0%,
+    #B01000 3.85%,
+    #B02000 7.7%,
+    #B03000 11.55%,
+    #B04000 15.4%,
+    #B05000 19.25%,
+    #B06000 23.1%,
+    #B07000 26.95%,
+    #B08000 30.8%,
+    #90B000 34.65%,
+    #70B000 38.5%,
+    #50B000 42.35%,
+    #00B020 46.2%,
+    #00B040 50.05%,
+    #00B060 53.9%,
+    #00B0B0 57.75%,
+    #0090B0 61.6%,
+    #0070B0 65.45%,
+    #0050B0 69.3%,
+    #0000B0 73.15%,
+    #5000B0 77%,
+    #7000B0 80.85%,
+    #9000B0 84.7%,
+    #B000B0 88.55%,
+    #B00040 92.4%,
+    #B00000 100%
+  );
+  background-size: 400% 100%;
+  animation: border-rainbow 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  border-radius: 24px;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
